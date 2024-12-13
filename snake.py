@@ -7,7 +7,7 @@ import random
 w = 500
 h = 500
 fs = 10
-d = 80 # milliseconds
+d = 80
 
 offsets = {
     "up": (0, 20),
@@ -49,14 +49,12 @@ def hall():
             saap[-1][1] += h
 
         pen.clearstamps()
- #clears all the stamps
 
         for segment in saap:
             pen.goto(segment[0], segment[1])
             pen.stamp()
 
         screen.update()
- #updates the turtle.screen screen
 
         turtle.ontimer(hall, d)
 
