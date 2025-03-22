@@ -1,10 +1,10 @@
 # Snake by Danilo
-# Use the arrow keys to move
+# Use the arrow keys to move or WASD keys to control the snake.
 
 import turtle
-import random
+import random 
 
-# Screen Configuration
+# Screen Configuration 
 WIDTH, HEIGHT = 500, 500
 FOOD_SIZE = 10
 DELAY = 100  # Milliseconds between updates
@@ -142,6 +142,10 @@ def setup_game():
     screen.onkey(move_right, "Right")
     screen.onkey(move_down, "Down")
     screen.onkey(move_left, "Left")
+    screen.onkey(move_up, "w")
+    screen.onkey(move_right, "d")
+    screen.onkey(move_down, "s")
+    screen.onkey(move_left, "a")
     screen.onkey(exit_game, "q")
 
 # Game window settings
