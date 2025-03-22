@@ -1,3 +1,6 @@
+# Snake by Danilo
+# Use the arrow keys to move
+
 import turtle
 import random
 
