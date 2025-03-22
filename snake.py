@@ -1,13 +1,10 @@
-# Snake by Danilo
-# Usa le freccie direzionali per il movimento
-
 import turtle
 import random
 
-# Configurazione dello schermo
+# Screen Configuration
 WIDTH, HEIGHT = 500, 500
 FOOD_SIZE = 10
-DELAY = 100  # Millisecondi tra ogni aggiornamento
+DELAY = 100  # Milliseconds between updates
 
 offsets = {
     "up": (0, 20),
@@ -15,6 +12,35 @@ offsets = {
     "left": (-20, 0),
     "right": (20, 0)
 }
+
+def show_menu():
+    screen.clear()
+    screen.bgcolor("pink")
+    screen.title("Snake Game by Danilo")
+    
+    menu_turtle = turtle.Turtle()
+    menu_turtle.hideturtle()
+    menu_turtle.penup()
+    menu_turtle.goto(0, 100)
+    menu_turtle.write("SNAKE GAME BY DANILO", align="center", font=("Arial", 24, "bold"))
+    menu_turtle.goto(0, 50)
+    menu_turtle.write("Press SPACE to Play", align="center", font=("Arial", 16, "normal"))
+    menu_turtle.goto(0, 0)
+    menu_turtle.write("Press Q to Quit", align="center", font=("Arial", 16, "normal"))
+    
+    screen.listen()
+    screen.onkey(start_game, "space")
+    screen.onkey(exit_game, "q")
+
+def start_game():
+    screen.clear()
+    screen.bgcolor("pink")
+    screen.tracer(0)
+    setup_game()
+    reset_game()
+
+def exit_game():
+    turtle.bye()
 
 def reset_game():
     global snake, direction, food_position
@@ -31,8 +57,8 @@ def update_game():
     new_head[0] += offsets[direction][0]
     new_head[1] += offsets[direction][1]
     
-    if new_head in snake[:-1]:  # Collisione con se stesso
-        reset_game()
+    if new_head in snake[:-1]:  # Collision with itself
+        show_menu()
         return
     
     snake.append(new_head)
@@ -40,7 +66,7 @@ def update_game():
     if not check_food_collision():
         snake.pop(0)
     
-    # Gestione attraversamento bordi
+    # Border crossing management
     if new_head[0] > WIDTH / 2:
         new_head[0] -= WIDTH
     elif new_head[0] < -WIDTH / 2:
@@ -95,29 +121,28 @@ def move_left():
     if direction != "right":
         direction = "left"
 
-# Impostazioni della finestra di gioco
+def setup_game():
+    global pen, food
+    
+    pen = turtle.Turtle("square")
+    pen.color('green')
+    pen.penup()
+    
+    food = turtle.Turtle()
+    food.shape("circle")
+    food.color("red")
+    food.shapesize(FOOD_SIZE / 20)
+    food.penup()
+    
+    screen.listen()
+    screen.onkey(move_up, "Up")
+    screen.onkey(move_right, "Right")
+    screen.onkey(move_down, "Down")
+    screen.onkey(move_left, "Left")
+    screen.onkey(exit_game, "q")
+
+# Game window settings
 screen = turtle.Screen()
 screen.setup(WIDTH, HEIGHT)
-screen.title("Snake Game")
-screen.bgcolor("pink")
-screen.tracer(0)
-
-pen = turtle.Turtle("square")
-pen.color('green')
-pen.penup()
-
-food = turtle.Turtle()
-food.shape("circle")
-food.color("red")
-food.shapesize(FOOD_SIZE / 20)
-food.penup()
-
-# Ascolto dei comandi da tastiera
-screen.listen()
-screen.onkey(move_up, "Up")
-screen.onkey(move_right, "Right")
-screen.onkey(move_down, "Down")
-screen.onkey(move_left, "Left")
-
-reset_game()
+show_menu()
 turtle.done()
