@@ -1,2 +1,4 @@
 # SnakeGame
-the famous Snake game in 2000 nokia phones with python
+Snake was born in 1976 with the arcade game Blockade, developed by Gremlin. The basic concept was simple: a growing snake moves across the screen, avoiding collisions with itself or the edges. In the 1980s, the game was adapted for computers like the Apple II and Commodore 64, with various versions.
+
+The real explosion in popularity came in 1997 when Nokia included Snake on its mobile phones, making it one of the first mass mobile games. Since then, the game has been re-released in numerous modern versions, including Slither.io and the Google Snake Game. Today, Snake remains a timeless classic, with variants that enhance the gaming experience.
